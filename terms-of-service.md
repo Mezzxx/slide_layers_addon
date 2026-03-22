@@ -63,4 +63,4 @@ These terms shall be governed by and construed in accordance with the laws of th
 
 ## Contact
 
-If you have questions about these terms, contact: **[YOUR_EMAIL]**
+If you have questions about these terms, contact: tehmezz@gmail.com
