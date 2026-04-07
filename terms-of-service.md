@@ -1,4 +1,4 @@
-# Terms of Service — Layer Panel for Google Slides
+# Terms of Service — Layer Panel for Google Slides™
 
 **Last updated:** March 22, 2026
 
@@ -8,22 +8,22 @@ By installing or using Layer Panel ("the Add-on"), you agree to these Terms of S
 
 ## Description of Service
 
-Layer Panel is a free Google Slides add-on that provides a sidebar interface for viewing, selecting, reordering, renaming, and toggling visibility of slide elements. It is designed to replicate layer panel functionality found in other presentation and design tools.
+Layer Panel is a free Google Slides™ add-on that provides a sidebar interface for viewing, selecting, reordering, renaming, and toggling visibility of slide elements. It is designed to replicate layer panel functionality found in other presentation and design tools.
 
 ## Use of the Add-on
 
-You may use Layer Panel for personal, educational, or commercial purposes. The Add-on is provided for use within Google Slides through the Google Workspace Marketplace.
+You may use Layer Panel for personal, educational, or commercial purposes. The Add-on is provided for use within Google Slides™ through the Google Workspace Marketplace.
 
 ## How the Add-on Works
 
-Layer Panel modifies your Google Slides presentation in the following ways:
+Layer Panel modifies your Google Slides™ presentation in the following ways:
 
 - **Reordering:** Changes the z-order (front-to-back stacking) of elements on a slide.
-- **Hiding/showing:** Moves elements off-canvas (to position -10000, -10000) to simulate hiding, and restores their original position to show them. This is a workaround because Google Slides does not provide a native visibility toggle.
+- **Hiding/showing:** Moves elements off-canvas (to position -10000, -10000) to simulate hiding, and restores their original position to show them. This is a workaround because Google Slides™ does not provide a native visibility toggle.
 - **Renaming:** Stores custom layer names in the document's built-in properties.
 - **Selecting:** Programmatically selects elements on the slide canvas.
 
-These modifications are made directly to the presentation. Changes to z-order and element positions cannot be undone using Google Slides' built-in undo (Ctrl+Z).
+These modifications are made directly to the presentation. Changes to z-order and element positions cannot be undone using Google Slides™' built-in undo (Ctrl+Z).
 
 ## Disclaimer of Warranties
 
@@ -31,7 +31,7 @@ The Add-on is provided "as is" and "as available" without warranties of any kind
 
 Specifically:
 
-- The Add-on relies on Google Apps Script and the Google Slides API, which may change without notice.
+- The Add-on relies on Google Apps Script and the Google Slides™ API, which may change without notice.
 - The hide/show feature uses a positional workaround that may not behave identically to native visibility toggles in other applications.
 - Polling-based synchronization (slide changes, selection, element count) operates on a delay and may not reflect changes instantaneously.
 
@@ -43,11 +43,11 @@ The developer is not responsible for any unintended modifications to your presen
 
 ## Data and Privacy
 
-Layer Panel does not collect, transmit, or store any user data outside of the Google Slides document. For full details, see our [Privacy Policy](privacy-policy.md).
+Layer Panel does not collect, transmit, or store any user data outside of the Google Slides™ document. For full details, see our [Privacy Policy](privacy-policy.md).
 
 ## Third-Party Services
 
-Layer Panel runs entirely within the Google Apps Script environment and the Google Slides editor. It does not integrate with or transmit data to any third-party services.
+Layer Panel runs entirely within the Google Apps Script environment and the Google Slides™ editor. It does not integrate with or transmit data to any third-party services.
 
 ## Modifications to the Add-on
 
