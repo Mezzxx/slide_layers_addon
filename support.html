@@ -1,14 +1,577 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Support — Slide Layers for Google Slides™</title>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="MlevmiRpYdbVhfVJSz1ZL7qiE5Spol3Ke2TGXeRURU0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide Layers for Google Slides™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f9fa;
+      --gray-100: #f1f3f4;
+      --gray-200: #e8eaed;
+      --gray-300: #dadce0;
+      --gray-500: #9aa0a6;
+      --gray-700: #5f6368;
+      --gray-900: #202124;
+      --blue: #1a73e8;
+      --blue-dark: #1557b0;
+      --blue-light: #e8f0fe;
+      --green: #188038;
+      --orange: #ea8600;
+      --red: #d93025;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ─── Nav ──────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    nav .inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--gray-900);
+    }
+
+    .nav-logo {
+      width: 28px;
+      height: 28px;
+      background: var(--blue);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-name {
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-700);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--gray-900); }
+
+    /* ─── Hero ─────────────────────────────── */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, var(--blue-light) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5.5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    h1 .accent { color: var(--blue); }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--gray-700);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      font-weight: 300;
+      line-height: 1.6;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.15s, transform 0.15s;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .hero-cta:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ─── Preview ──────────────────────────── */
+    .preview {
+      max-width: 780px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    .preview-window {
+      background: var(--gray-900);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.07),
+        0 4px 12px rgba(0,0,0,0.06),
+        0 16px 40px rgba(0,0,0,0.08);
+    }
+
+    .preview-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: var(--gray-900);
+    }
+
+    .preview-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #5f6368;
+    }
+
+    .preview-dot:nth-child(1) { background: var(--red); }
+    .preview-dot:nth-child(2) { background: var(--orange); }
+    .preview-dot:nth-child(3) { background: var(--green); }
+
+    .preview-content {
+      display: flex;
+      background: var(--off-white);
+      min-height: 320px;
+    }
+
+    .preview-slide {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: var(--white);
+      margin: 8px;
+      margin-right: 4px;
+      border-radius: 4px;
+    }
+
+    .preview-slide-inner {
+      text-align: center;
+    }
+
+    .mock-shape {
+      display: inline-block;
+      margin: 6px;
+      border-radius: 4px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .mock-shape:nth-child(1) {
+      width: 120px;
+      height: 40px;
+      background: var(--blue-light);
+      border: 2px solid var(--blue);
+    }
+
+    .mock-shape:nth-child(2) {
+      width: 80px;
+      height: 80px;
+      background: #fce8e6;
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      animation-delay: -1s;
+    }
+
+    .mock-shape:nth-child(3) {
+      width: 100px;
+      height: 60px;
+      background: #e6f4ea;
+      border: 2px solid var(--green);
+      animation-delay: -2s;
+    }
+
+    .preview-panel {
+      width: 220px;
+      background: var(--white);
+      margin: 8px;
+      margin-left: 4px;
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 11px;
+    }
+
+    .panel-title {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .panel-layer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      margin-bottom: 3px;
+      cursor: default;
+      transition: background 0.1s;
+    }
+
+    .panel-layer:hover { background: var(--gray-100); }
+    .panel-layer.active { background: var(--blue-light); }
+
+    .panel-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .panel-icon.blue { background: rgba(66,133,244,0.1); color: #4285f4; }
+    .panel-icon.red { background: rgba(217,48,37,0.1); color: var(--red); }
+    .panel-icon.green { background: rgba(24,128,56,0.1); color: var(--green); }
+
+    .panel-label {
+      flex: 1;
+      font-weight: 500;
+      color: var(--gray-900);
+      font-size: 11px;
+    }
+
+    .panel-type {
+      font-size: 9px;
+      color: var(--gray-500);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+    }
+
+    .panel-vis {
+      color: var(--gray-500);
+      font-size: 10px;
+    }
+
+    /* ─── Features ─────────────────────────── */
+    .features {
+      max-width: 980px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .features-header h2 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+    }
+
+    .features-header p {
+      font-size: 16px;
+      color: var(--gray-700);
+      font-weight: 300;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 28px;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--gray-300);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon.fi-layers { background: var(--blue-light); color: var(--blue); }
+    .feature-icon.fi-reorder { background: #fce8e6; color: var(--red); }
+    .feature-icon.fi-hide { background: #e6f4ea; color: var(--green); }
+    .feature-icon.fi-select { background: #fef7e0; color: var(--orange); }
+    .feature-icon.fi-multi { background: #f3e8fd; color: #8430ce; }
+    .feature-icon.fi-keys { background: var(--gray-100); color: var(--gray-700); }
+
+    .feature-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    /* ─── Shortcuts ────────────────────────── */
+    .shortcuts {
+      max-width: 580px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+
+    .shortcuts h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .shortcut-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .shortcut-row:last-child { border-bottom: none; }
+
+    .shortcut-desc {
+      font-size: 14px;
+      color: var(--gray-700);
+      font-weight: 300;
+    }
+
+    .shortcut-keys {
+      display: flex;
+      gap: 4px;
+    }
+
+    kbd {
+      display: inline-block;
+      padding: 3px 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray-700);
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: 4px;
+    }
+
+    /* ─── Footer ───────────────────────────── */
+    footer {
+      border-top: 1px solid var(--gray-200);
+      padding: 40px 24px;
+    }
+
+    footer .inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer .copy {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    footer .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    footer .footer-links a {
+      font-size: 12px;
+      color: var(--gray-500);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    footer .footer-links a:hover { color: var(--gray-900); }
+
+    /* ─── Animations ───────────────────────── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ─── Responsive ───────────────────────── */
+    @media (max-width: 640px) {
+      .hero { padding: 120px 20px 60px; }
+      .preview-content { flex-direction: column; }
+      .preview-panel { width: auto; }
+      .feature-grid { grid-template-columns: 1fr; }
+      footer .inner { flex-direction: column; text-align: center; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
 </head>
 <body>
+
+  <nav>
+    <div class="inner">
+      <a href="#" class="nav-brand">
+        <span class="nav-logo">LP</span>
+        <span class="nav-name">Slide Layers</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#shortcuts">Shortcuts</a></li>
+        <li><a href="https://github.com/Mezzxx/gslides_layer_panel_addon" target="_blank">GitHub</a></li>
+        <li><a href="https://slide-layers.zeen-media.com/privacy-policy">Privacy</a></li>
+        <li><a href="https://slide-layers.zeen-media.com/terms-of-service" target="_blank">Terms</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <h1>Layer Panel Support</h1>
   <p>Need help with Slide Layers for Google Slides™?</p>
   <h2>Contact</h2>
   <p>Email: <a href="mailto:YOUR_EMAIL">tehmezz+slidelayerssupport@gmail.com</a></p>
   <h2>Report a Bug</h2>
   <p>File an issue on our <a href="https://github.com/Mezzxx/gslides_layer_panel_addon/issues">issue tracker</a>.</p>
+
+  <!-- Footer -->
+  <footer>
+    <div class="inner">
+      <span class="copy">&copy; 2026 Layer Panel. Built by <a href="https://zeen-media.com" target="_blank" style="color:var(--gray-700); text-decoration:none;">Zeen Media</a>.</span>
+      <ul class="footer-links">
+        <li><a href="https://slide-layers.zeen-media.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+        <li><a href="https://slide-layers.zeen-media.com/terms-of-service" target="_blank">Terms of Service</a></li>
+        <li><a href="https://github.com/Mezzxx/gslides_layer_panel_addon" target="_blank">GitHub</a></li>
+        <li><a href="https://github.com/Mezzxx/gslides_layer_panel_addon/issues" target="_blank">Support</a></li>
+      </ul>
+    </div>
+  </footer>
+
 </body>
 </html>
+
