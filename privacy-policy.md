@@ -1,19 +1,19 @@
-# Privacy Policy — Layer Panel for Google Slides™
+# Privacy Policy — Slide Layers for Google Slides™
 
 **Last updated:** March 22, 2026
 
 ## Overview
 
-Layer Panel is a Google Slides™ add-on that provides a sidebar interface for managing slide elements. This policy explains what data the add-on accesses, how it is used, and how it is stored.
+Slide Layers is a Google Slides™ add-on that provides a sidebar interface for managing slide elements. This policy explains what data the add-on accesses, how it is used, and how it is stored.
 
 ## What Data We Access
 
-Layer Panel accesses the following data from your Google Slides™ presentation:
+Slide Layers accesses the following data from your Google Slides™ presentation:
 
 - **Page elements on the current slide:** Element types, names, positions, dimensions, and z-order. This data is read to display the layer list in the sidebar.
 - **Selection state:** Which elements are currently selected, and which slide is active. This is used to keep the sidebar in sync with the canvas.
 
-Layer Panel does **not** access:
+Slide Layers does **not** access:
 
 - Other files in your Google Drive
 - Your Google account information (beyond what is required for authorization)
@@ -22,15 +22,15 @@ Layer Panel does **not** access:
 
 ## How Data Is Used
 
-All data accessed by Layer Panel is used exclusively to power the sidebar interface within your current editing session. Specifically:
+All data accessed by Slide Layers is used exclusively to power the sidebar interface within your current editing session. Specifically:
 
-- Element metadata (type, position, size) is displayed in the layer panel.
+- Element metadata (type, position, size) is displayed in the Slide Layers.
 - Selection and slide state are polled to keep the panel synchronized with the canvas.
 - Custom element names and hidden-element state are stored in the presentation's document properties (see below).
 
 ## Data Storage
 
-Layer Panel stores a small amount of configuration data using Google Slides™' built-in Document Properties:
+Slide Layers stores a small amount of configuration data using Google Slides™' built-in Document Properties:
 
 - **Custom element names:** When you rename a layer, the custom name is saved as a document property within the presentation itself.
 - **Hidden element state:** When you hide an element, its original position and dimensions are saved as a document property so it can be restored later.
@@ -44,22 +44,22 @@ This data:
 
 ## External Services
 
-Layer Panel does **not** transmit any data to external servers, third-party services, analytics platforms, or advertising networks. All processing happens locally between the Google Slides™ editor and the Apps Script runtime.
+Slide Layers does **not** transmit any data to external servers, third-party services, analytics platforms, or advertising networks. All processing happens locally between the Google Slides™ editor and the Apps Script runtime.
 
 ## Permissions
 
-Layer Panel requests two OAuth scopes:
+Slide Layers requests two OAuth scopes:
 
 | Scope | Purpose |
 |---|---|
 | `presentations.currentonly` | Read and modify elements in the currently open presentation only |
 | `script.container.ui` | Display the sidebar interface |
 
-These are the minimum permissions required for the add-on to function. The `currentonly` scope means Layer Panel cannot access any presentation other than the one you have open.
+These are the minimum permissions required for the add-on to function. The `currentonly` scope means Slide Layers cannot access any presentation other than the one you have open.
 
 ## Data Retention
 
-Layer Panel does not retain any data outside of the Google Slides™ document. When you close the sidebar or close the presentation, no session data persists. The only persistent data is the document properties described above, which remain part of the presentation file.
+Slide Layers does not retain any data outside of the Google Slides™ document. When you close the sidebar or close the presentation, no session data persists. The only persistent data is the document properties described above, which remain part of the presentation file.
 
 ## Changes to This Policy
 
